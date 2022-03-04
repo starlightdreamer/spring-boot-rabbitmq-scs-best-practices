@@ -7,8 +7,8 @@ spring:
           # Declare more descriptive binding names (optional)
           textToTextWrapperProcessor-in-0: scsExample-text-input
           textToTextWrapperProcessor-out-0: scsExample-wrappedText-output
-      rabbit.bindings:
-        scsExample-wrappedText-input:
+      rabbit:
+        default:  # could instead use specific channel/binding name instead of "default"
           consumer:
             autoBindDlq: true  # creates DLQ and automatically publishes thrown messages to it
             republishToDlq: true  # Optional: includes error & stacktrace in dead-lettered message
