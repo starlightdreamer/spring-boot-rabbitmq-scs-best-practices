@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: textToTextWrapperProcessor;wrappedTextConsumer
+        bindings:
+          # Declare more descriptive binding names (optional)
+          textToTextWrapperProcessor-in-0: scsExample-text-input
+          textToTextWrapperProcessor-out-0: scsExample-wrappedText-output
+      rabbit.bindings:
+        scsExample-wrappedText-input:
+          consumer:
+            autoBindDlq: true  # creates DLQ and automatically publishes thrown messages to it
+            republishToDlq: true  # Optional: includes error & stacktrace in dead-lettered message
+      bindings:
+        output.content-type: application/json
+        wrappedTextConsumer-in-0:  # didn't declare an optional name in spring.cloud.stream.function.bindings
+          destination: text.wrapped  # name of the AMQP exchange to bind to. (to consume from, in this case)
+          group: scsExample  # queue name will be generated as: "destination.group", so: text.wrapped.scsExample
+        scsExample-wrappedText-output:
+          destination: text.wrapped
+          # This binding has no group because it publishes to the entire text.wrapped exchange.
+          #   Every queue bound to that exchange will get a copy of the message.
+        scsExample-text-output:
+          destination: text
+        scsExample-text-input:
+          destination: text
+          group: scsExample
+
+exampleApp.publisher.bindingName: scsExample-text-output
