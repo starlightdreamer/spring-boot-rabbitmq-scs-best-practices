@@ -1,0 +1,18 @@
+
+C:\Program Files\RabbitMQ Server\rabbitmq_server-3.9.13\sbin>curl -d "text=hi" -X POST http://localhost:8080/text -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 127.0.0.1:8080...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> POST /text HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.79.1
+> Accept: */*
+> Content-Length: 7
+> Content-Type: application/x-www-form-urlencoded
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200
+< Content-Length: 0
+< Date: Thu, 24 Feb 2022 11:50:51 GMT
+<
+* Connection #0 to host localhost left intact
