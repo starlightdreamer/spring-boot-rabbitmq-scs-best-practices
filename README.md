@@ -1,16 +1,12 @@
 # Spring Boot - best practices example with RabbitMQ and Spring Cloud Stream
 
-Many online sources show outdated/deprecated implementations of Spring Boot & messaging.
+Messaging is often implemented with Spring using outdated/deprecated patterns.
 
-This is an attempt to show an easy way to use RabbitMQ using latest best practices of Spring Boot & Spring Cloud Stream.
+This repo attempts to show an easy way to use RabbitMQ using latest best practices of Spring Boot & Spring Cloud Stream.
 
-Expands on the article [Event Driven Microservices With Spring Cloud Stream and RabbitMQ](https://medium.com/javarevisited/event-driven-microservices-with-spring-cloud-stream-and-rabbitmq-add4166fe223) and the [function-composition-rabbit](https://github.com/spring-cloud/spring-cloud-stream-samples/tree/main/multi-functions-samples/function-composition-rabbit) sample in the official Spring Cloud samples collection.
+The Java code is not RabbitMQ specific. It is bound to a RabbitMQ service through configuration (`resources/application.yml`) and by declaring the dependency `spring-cloud-stream-binder-rabbit`.
 
-## Description
-
-The Java code is not RabbitMQ specific. It is agnostic messaging, bound to a RabbitMQ service through configuration (`resources/application.yml`) and declaring the dependency `spring-cloud-stream-binder-rabbit`.
-
-Code includes:
+This app includes:
 
 - Message consumer
 - Message processor (consumes message -> publishes new message)
