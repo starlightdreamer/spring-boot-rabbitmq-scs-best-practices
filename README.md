@@ -45,15 +45,15 @@ If an exception is thrown during consumption of a message, and `autoBindDlq` is 
 
 This could happen if the bound function throws an exception or Spring fails to marshall the payload into the object type defined in the signature. The following message is not JSON and will thus fail:
 
-![publishing invalid message payload screenshot](./readme-images/publish message example.png)
+![publishing invalid message payload screenshot](https://raw.githubusercontent.com/starlightdreamer/main/readme-images/publish-message-example.png)
 
 This results in the DLQ receiving the failure as a message:
 
-![the DLQ](./readme-images/DLQ example.png)
+![the DLQ](https://raw.githubusercontent.com/starlightdreamer/main/readme-images/DLQ-example.png)
 
 The message:
 
-![the DLQ message](./readme-images/DLQ message example.png)
+![the DLQ message](https://raw.githubusercontent.com/starlightdreamer/main/readme-images/DLQ-message-example.png)
 
 Enable with: `spring.cloud.stream.rabbit.bindings.<channelName>.consumer.autoBindDlq=true`  (see `resources/application.yml` for example)
 
