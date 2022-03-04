@@ -41,6 +41,26 @@ Example: `curl -d "text=hi" -X POST http://localhost:8080/text -v`
 
 The POST publishes a message to the exchange consumed by the `Function` bean `textToTextWrapperProcessor`. This bean is configured for its return value to be published as a message to the exchange which the `Consumer` bean `wrappedTextConsumer` consumes from.
 
+See `readme-images/example-app-log.txt` for an example of running the app with a successful POST receive and messaging, followed by a failed message consumption attempt & dead-lettering.
+
+## Dead letter queue
+
+If an exception is thrown during consumption of a message, and `autoBindDlq` is enabled, the message will be consumed and a copy will be published to a dead-letter queue.
+
+This could happen if the bound function throws an exception or Spring fails to marshall the payload into the object type defined in the signature. The following message is not JSON and will thus fail:
+
+![publishing invalid message payload screenshot](readme-images/publish message example.png)
+
+This results in the DLQ receiving the failure as a message:
+
+![the DLQ](readme-images/DLQ example.png)
+
+The message:
+
+![the DLQ message](readme-images/DLQ message example.png)
+
+Enable with: `spring.cloud.stream.rabbit.bindings.<channelName>.consumer.autoBindDlq=true`  (see `resources/application.yml` for example)
+
 ## How to re-create a similar app
 
 - [Spring Initializr](https://start.spring.io/)
