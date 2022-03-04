@@ -1,10 +1,10 @@
-package com.example.springbootrabbitmqscsbestpractices;
+package com.example.spring.boot.rabbitmq;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootRabbitmqScsBestPracticesApplicationTests {
+class MessagingExampleApplicationTests {
 
 	@Test
 	void contextLoads() {
